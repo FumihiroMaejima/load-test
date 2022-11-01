@@ -13,6 +13,13 @@ showMessage() {
 
 showMessage ${START_MESSAGE}
 
+# parameter count ($#) check。
+if [ $# -ne 1 ]; then
+  echo "You had set $# parameters." 1>&2
+  echo "You need 1 parameters to exectute this batch." 1>&2
+  exit 1
+fi
+
 # -qオプション container idのみを表示
 # /dev/null: 出力が破棄され、なにも表示されない。
 # 2(標準エラー出力) を/dev/nullに破棄することで、1(標準出力)のみを出力する。
