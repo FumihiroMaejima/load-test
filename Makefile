@@ -1,5 +1,7 @@
 .PHONY: help
 .DEFAULT_GOAL := help
+
+WOKER=1
 ##############################
 # make docker environmental
 ##############################
@@ -21,7 +23,8 @@ dev:
 	sh ./scripts/dev.sh
 
 locust-dev:
-	sh ./scripts/locust-dev.sh
+#	 sh ./scripts/locust-dev.sh
+	sh ./scripts/locust-dev.sh $(WOKER)
 
 locust-ps:
 	docker-compose -f ./docker-compose.locust.yml ps

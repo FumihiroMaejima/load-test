@@ -19,7 +19,10 @@ showMessage ${START_MESSAGE}
 if [[ "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps -q 2>/dev/null)" == "" ]]; then
   # コンテナが立ち上がっていない状態の時
   showMessage 'Up Docker Container!'
-  docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
+  # docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
+  # docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --scale worker=4
+  # set parameter for worker count.
+  docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --scale worker=$1
 else
 　# コンテナが立ち上がっている状態の時
   showMessage 'Down Docker Container!'
