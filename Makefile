@@ -2,6 +2,9 @@
 .DEFAULT_GOAL := help
 
 WOKER=1
+LOCUST_FILE=./locust/locustfile.py
+LOCUST_SAMPLE_FILE=./locust/samples/locustfileTest.py
+
 ##############################
 # make docker environmental
 ##############################
@@ -22,8 +25,12 @@ ps:
 dev:
 	sh ./scripts/dev.sh
 
-create:
-	cp ./locust/samples/locustfileTest.py ./locust/locustfile.py
+create: # create locustfile.py
+ifeq ("$(wildcard $(LOCUST_FILE))", "")
+	cp $(LOCUST_SAMPLE_FILE) $(LOCUST_FILE)
+else
+	@echo file exist.
+endif
 
 locust-dev:
 #	 sh ./scripts/locust-dev.sh
