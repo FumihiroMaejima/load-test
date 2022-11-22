@@ -22,6 +22,9 @@ ps:
 dev:
 	sh ./scripts/dev.sh
 
+create:
+	cp ./locust/samples/locustfileTest.py ./locust/locustfile.py
+
 locust-dev:
 #	 sh ./scripts/locust-dev.sh
 	sh ./scripts/locust-dev.sh $(WOKER)
