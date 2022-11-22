@@ -1,6 +1,6 @@
 from locust import HttpUser, task
 
-class HelloWorldUser(HttpUser):
+class DebugUser(HttpUser):
     @task
-    def hello_world(self):
+    def debug_test(self):
         self.client.get("/api/v1/debug/test")
