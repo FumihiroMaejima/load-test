@@ -29,7 +29,7 @@ create: # create locustfile.py
 ifeq ("$(wildcard $(LOCUST_FILE))", "") # ファイルが無い場合
 	cp $(LOCUST_SAMPLE_FILE) $(LOCUST_FILE)
 else
-	@echo file exist.
+	@echo file already exist.
 endif
 
 locust-dev:
