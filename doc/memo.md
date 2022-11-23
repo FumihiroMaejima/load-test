@@ -177,15 +177,41 @@ webシステムでは、「１秒間に処理を行う(捌ける)HTTPリクエ�
 
 ---
 
-## volumeとnetworkの作成
-
-networkは`gateway`と`subnet`を必ず指定する。(値は任意。)
+## topの実行結果例
 
 ```shell
-docker volume create ${PROJECT_NAME}-db-store
-docker volume create ${PROJECT_NAME}-redis-store
-docker volume create ${PROJECT_NAME}-mail-store
-docker network create --gateway=172.19.0.1 --subnet=172.19.0.0/16 ${PROJECT_NAME}-net
+# top
+Mem: 1759200K used, 6383056K free, 330104K shrd, 50456K buff, 764248K cached
+CPU:   0% usr   0% sys   0% nic  99% idle   0% io   0% irq   0% sirq
+Load average: 0.01 0.04 0.02 2/649 53
+  PID  PPID USER     STAT   VSZ %VSZ CPU %CPU COMMAND
+   31     1 nginx    S     6720   0%   1   0% nginx: worker process
+   32     1 nginx    S     6720   0%   2   0% nginx: worker process
+   34     1 nginx    S     6720   0%   1   0% nginx: worker process
+   33     1 nginx    S     6720   0%   3   0% nginx: worker process
+    1     0 root     S     6272   0%   2   0% nginx: master process nginx -g daemon off; -c /etc/nginx/nginx.conf
+   44     0 root     S     1772   0%   3   0% ash
+   35     0 root     S     1744   0%   2   0% ash
+```
+
+## netstatの実行結果例
+
+```shell
+# netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 d10be59bfbdf:http       172.19.0.1:60182        ESTABLISHED
+tcp        0      0 d10be59bfbdf:http       172.19.0.1:62892        TIME_WAIT
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  3      [ ]         STREAM     CONNECTED      23091
+unix  3      [ ]         STREAM     CONNECTED      23092
+unix  3      [ ]         STREAM     CONNECTED      23094
+unix  3      [ ]         STREAM     CONNECTED      23095
+unix  3      [ ]         STREAM     CONNECTED      23093
+unix  3      [ ]         STREAM     CONNECTED      23096
+unix  3      [ ]         STREAM     CONNECTED      23097
+unix  3      [ ]         STREAM     CONNECTED      23098
 ```
 
 
