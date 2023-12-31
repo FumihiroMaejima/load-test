@@ -7,9 +7,14 @@ services:
      - "8089:8089"
     volumes:
       - ./locust:/mnt/locust
-    command: -f /mnt/locust/locustfile.py --master -H ${TEST_TARGET_HOST}
+    command: -f /mnt/locust/locustfile.py --master -H ${LOCUST_TEST_TARGET_HOST}
+    environment:
+      TZ: "Asia/Tokyo"
+
   worker:
     image: locustio/locust
     volumes:
       - ./locust:/mnt/locust
     command: -f /mnt/locust/locustfile.py --worker --master-host master
+    environment:
+      TZ: "Asia/Tokyo"

@@ -31,7 +31,7 @@ if [[ "$(docker-compose -f ${DOCKER_COMPOSE_FILE} ps -q 2>/dev/null)" == "" ]]; 
   # set parameter for worker count.
   docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --scale worker=$1
 else
-　# コンテナが立ち上がっている状態の時
+  # コンテナが立ち上がっている状態の時
   showMessage 'Down Docker Container!'
   docker-compose -f ${DOCKER_COMPOSE_FILE} down
 fi
